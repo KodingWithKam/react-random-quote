@@ -3,7 +3,7 @@ import axios from "axios";
 
 const quoteService = {
     fetchQuote: async (): Promise<Quote> => {
-        const res = await axios.get('https://zenquotes.io/api/quotes/');
+        const res = await axios.get('https://quotes.rest/qod');
         return res.data;
     }
 }

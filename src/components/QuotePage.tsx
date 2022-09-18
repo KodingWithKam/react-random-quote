@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import quoteService from "../utils/quoteService";
-import {Quote} from "../interfaces/quote";
 
 const QuotePage = () => {
-    const [quote, setQuote] = useState< Quote | undefined >(undefined);
+    const [quote, setQuote] = useState< string | undefined >(undefined);
     useEffect(() => {
         quoteService.fetchQuote().then((res) => {
-            setQuote(res)
+            setQuote(res?.contents?.quotes[0].quote)
         }).catch((e) => {
             console.log(e)
         })
@@ -15,7 +14,7 @@ const QuotePage = () => {
     return (
         <div>
             <h1>Daily Quote</h1>
-            {quote && <p>{quote.q}</p>}
+            {quote && <p>{quote}</p>}
         </div>
     )
 }
